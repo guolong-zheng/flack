@@ -1,0 +1,814 @@
+benchmark/realbugs/addr1.als:
+RANK LIST:
+lone ((n.(b.listed))) 1.31
+n in lookup[b,n] 1.30 
+!(n in lookup[b,n]) 1.30
+l in lookup[b,n] 1.30 
+l in (b.entry) 1.17 
+l in lookup[b,n] => l in (b.entry) 1.00  => 
+-------------------
+analyze time(msec): 693
+# rel: 1
+# val: 3
+# Slice Out: 10
+# Total AST: 74
+LOC: 29
+===================
+
+
+benchmark/realbugs/arr1.als:
+no bug 
+
+benchmark/realbugs/arr2.als:
+RANK LIST:
+all i: one (((Array.i2e).Element)) | #((i.(Array.i2e))) = 1 406.00
+all i: one (((Array.i2e).Element)) | i < (Array.length) 378.00
+(Array.length) = #(Element) 36.53 
+Element = (Int.(Array.i2e)) 30.93 
+#((i.(Array.i2e))) = 1 30.33 
+i < (Array.length) 30.15 
+i >= 0 4.65 
+-------------------
+analyze time(msec): 318
+# rel: 3
+# val: 8
+# Slice Out: 4
+# Total AST: 60
+LOC: 29
+===================
+
+
+benchmark/realbugs/balancedBST1.als:
+RANK LIST:
+n !in (n.^((left+right)))
+# Total AST: 150
+LOC: 29
+===================
+
+
+benchmark/realbugs/balancedBST2_1.als:
+RANK LIST:
+some ((n.right)) => ((n.right).elem) > (n.elem) 7.25  => 
+all n: one (Node) | (some ((n.left)) => ((n.left).elem) < (n.elem) && some ((n.right)) => ((n.right).elem) > (n.elem))
+ 6.00
+(some ((n.left)) => ((n.left).elem) < (n.elem) && some ((n.right)) => ((n.right).elem) > (n.elem))
+ 3.88
+some ((n.right)) 3.45
+((n.right).elem) > (n.elem) 3.33 
+some ((n.left)) 3.05
+some ((n.left)) => ((n.left).elem) < (n.elem) 3.03  => 
+no (((n.left)&(n.right))) 2.80
+lone ((n.~((left+right)))) 2.10
+n !in (n.^((left+right))) 1.47 
+((n.left).elem) < (n.elem) 1.15 
+(n !in (n.^((left+right))) && lone ((n.~((left+right)))) && no (((n.left)&(n.right))))
+ 1.03
+Node = ((BinaryTree.root).*((left+right))) 0.93 
+-------------------
+analyze time(msec): 340
+# rel: 3
+# val: 2
+# Slice Out: 52
+# Total AST: 125
+LOC: 29
+===================
+
+
+benchmark/realbugs/balancedBST2_2.als:
+RANK LIST:
+-------------------
+analyze time(msec): 48
+# rel: 7
+# val: 5
+# Slice Out: 88
+# Total AST: 143
+LOC: 29
+===================
+
+
+benchmark/realbugs/balancedBST2_3.als:
+RANK LIST:
+no (((n.left)&(n.right))) 3.00
+lone ((#((n1.(left+right)))-#((n2.(left+right))))) 3.00
+n !in (n.^((left+right))) 2.08 
+lone ((n.~((left+right)))) 2.00
+(n !in (n.^((left+right))) && lone ((n.~((left+right)))) && no (((n.left)&(n.right))))
+ 1.25
+Node = ((BinaryTree.root).*((left+right))) 1.00 
+-------------------
+analyze time(msec): 155
+# rel: 5
+# val: 3
+# Slice Out: 65
+# Total AST: 129
+LOC: 29
+===================
+
+
+benchmark/realbugs/balancedBST3_1.als:
+RANK LIST:
+(n2.elem) < (n.elem) 1.50 
+(all n2: one ((n.^(left))) | (n2.elem) < (n.elem) && all n2: one ((n.^(right))) | (n2.elem) > (n.elem))
+ 1.50
+(n2.elem) > (n.elem) 1.50 
+-------------------
+analyze time(msec): 141
+# rel: 1
+# val: 3
+# Slice Out: 93
+# Total AST: 129
+LOC: 29
+===================
+
+
+benchmark/realbugs/balancedBST3_2.als:
+RANK LIST:
+HasAtMostOneChild[n1] Infinity
+(HasAtMostOneChild[n1] && HasAtMostOneChild[n2])
+ Infinity
+HasAtMostOneChild[n2] Infinity
+(HasAtMostOneChild[n1] && HasAtMostOneChild[n2])
+ <=> integer/mul[integer/signum[integer/minus[Depth[n1],Depth[n2]]],integer/minus[Depth[n1],Depth[n2]]] <= 1 21.00  <=> 
+all n1, n2: one (Node) | (HasAtMostOneChild[n1] && HasAtMostOneChild[n2])
+ <=> integer/mul[integer/signum[integer/minus[Depth[n1],Depth[n2]]],integer/minus[Depth[n1],Depth[n2]]] <= 1 15.00
+#((n.(left+right))) <= 1 5.93 
+no (((n.left)&(n.right))) 3.00
+n !in (n.^((left+right))) 2.08 
+lone ((n.~((left+right)))) 2.00
+(n !in (n.^((left+right))) && lone ((n.~((left+right)))) && no (((n.left)&(n.right))))
+ 1.25
+integer/mul[integer/signum[integer/minus[Depth[n1],Depth[n2]]],integer/minus[Depth[n1],Depth[n2]]] <= 1 1.00 
+Node = ((BinaryTree.root).*((left+right))) 1.00 
+-------------------
+analyze time(msec): 265
+# rel: 5
+# val: 3
+# Slice Out: 60
+# Total AST: 133
+LOC: 29
+===================
+
+
+benchmark/realbugs/bempl1.als:
+RANK LIST:
+r in ((p.owns).opened_by) 2.67 
+-------------------
+analyze time(msec): 24
+# rel: 1
+# val: 2
+# Slice Out: 7
+# Total AST: 14
+LOC: 29
+===================
+
+
+benchmark/realbugs/cd1_1.als:
+RANK LIST:
+all c: one (Class) | Object !in (c.^(ext)) 10.00
+Object !in (c.^(ext)) 5.05 
+-------------------
+analyze time(msec): 18
+# rel: 1
+# val: 1
+# Slice Out: 32
+# Total AST: 43
+LOC: 29
+===================
+
+
+benchmark/realbugs/cd1_2.als:
+RANK LIST:
+c in (c.*(ext)) 1.50 
+-------------------
+analyze time(msec): 21
+# rel: 1
+# val: 2
+# Slice Out: 30
+# Total AST: 43
+LOC: 29
+===================
+
+
+benchmark/realbugs/cd2.als:
+RANK LIST:
+c = (c.ext) 1.25 
+-------------------
+analyze time(msec): 33
+# rel: 1
+# val: 2
+# Slice Out: 25
+# Total AST: 35
+LOC: 29
+===================
+
+
+benchmark/realbugs/ctree1.als:
+no bug 
+
+benchmark/realbugs/dll1_1.als:
+RANK LIST:
+all n: one (Node) | (n.elem) <= ((n.nxt).elem) 36.00
+(n.elem) <= ((n.nxt).elem) 9.40 
+-------------------
+analyze time(msec): 58
+# rel: 1
+# val: 3
+# Slice Out: 67
+# Total AST: 81
+LOC: 29
+===================
+
+
+benchmark/realbugs/dll1_2.als:
+RANK LIST:
+(n1.nxt) = n2 <=> (n2.pre) = n1 20.70  <=> 
+n1 != n2 => (n1.nxt) = n2 <=> (n2.pre) = n1 15.70  => 
+(n2.pre) = n1 6.00 
+n1 != n2 1.00 
+(n1.nxt) = n2 0.70 
+Node = ((DLL.header).*(nxt)) 0.70 
+-------------------
+analyze time(msec): 47
+# rel: 2
+# val: 1
+# Slice Out: 52
+# Total AST: 81
+LOC: 29
+===================
+
+
+benchmark/realbugs/dll2_1.als:
+RANK LIST:
+all n: one (Node) | (n.elem) < ((n.nxt).elem) 36.00
+(n.elem) < ((n.nxt).elem) 9.40 
+-------------------
+analyze time(msec): 51
+# rel: 1
+# val: 3
+# Slice Out: 63
+# Total AST: 77
+LOC: 29
+===================
+
+
+benchmark/realbugs/dll2_2.als:
+RANK LIST:
+(n1.nxt) = n2 => (n2.pre) = n1 10.90  => 
+(n2.pre) = n1 5.05 
+(n1.nxt) = n2 1.00 
+Node = ((DLL.header).*(nxt)) 0.90 
+-------------------
+analyze time(msec): 43
+# rel: 2
+# val: 1
+# Slice Out: 52
+# Total AST: 77
+LOC: 29
+===================
+
+
+benchmark/realbugs/dll3_1.als:
+no bug 
+
+benchmark/realbugs/dll3_2.als:
+RANK LIST:
+all n: one (Node) | (((n.pre).elem)&((n.nxt).elem)) = none 15.00
+(((n.pre).elem)&((n.nxt).elem)) = none 6.55 
+Node = ((DLL.header).*(nxt)) 0.90 
+-------------------
+analyze time(msec): 50
+# rel: 2
+# val: 1
+# Slice Out: 46
+# Total AST: 72
+LOC: 29
+===================
+
+
+benchmark/realbugs/dll3_3.als:
+RANK LIST:
+Node = ((DLL.header).*(nxt)) 1.00 
+-------------------
+analyze time(msec): 26
+# rel: 2
+# val: 1
+# Slice Out: 64
+# Total AST: 72
+LOC: 29
+===================
+
+
+benchmark/realbugs/dll4.als:
+RANK LIST:
+all n: one (Node) | ((n.nxt).elem) > (n.elem) 78.00
+((n.nxt).elem) > (n.elem) 13.68 
+n !in (n.^(nxt)) 3.00 
+Node = ((DLL.header).*(nxt)) 2.85 
+-------------------
+analyze time(msec): 98
+# rel: 2
+# val: 3
+# Slice Out: 43
+# Total AST: 81
+LOC: 29
+===================
+
+
+benchmark/realbugs/fsm1.als:
+RANK LIST:
+(s.transition) = none => s in (FSM.stop) 16.13  => 
+(s.transition) = none 6.13 
+stop1 = stop2 1.40 
+s in (FSM.stop) 1.20 
+(FSM.stop) in (s.*(transition)) 1.12 
+(FSM.start) !in (FSM.stop) 0.70 
+(FSM.start) !in (s.transition) 0.63 
+State = ((FSM.start).*(transition)) 0.50 
+-------------------
+analyze time(msec): 72
+# rel: 2
+# val: 1
+# Slice Out: 18
+# Total AST: 88
+LOC: 29
+===================
+
+
+benchmark/realbugs/fsm2.als:
+RANK LIST:
+#((FSM.start)) = 1 0.70 
+(FSM.start) != (FSM.stop) 0.70 
+(FSM.stop) in (s.*(transition)) 0.65 
+(FSM.start) != (s.transition) 0.58 
+State = ((FSM.start).*(transition)) 0.50 
+-------------------
+analyze time(msec): 51
+# rel: 2
+# val: 1
+# Slice Out: 13
+# Total AST: 68
+LOC: 29
+===================
+
+
+benchmark/realbugs/grade1.als:
+RANK LIST:
+s in ((a.associated_with).assistant_for) 9.53 
+-------------------
+analyze time(msec): 32
+# rel: 2
+# val: 3
+# Slice Out: 15
+# Total AST: 22
+LOC: 29
+===================
+
+
+benchmark/realbugs/other1.als:
+RANK LIST:
+(p.member_of) in (r.located_in) 0.50 
+-------------------
+analyze time(msec): 16
+# rel: 1
+# val: 2
+# Slice Out: 19
+# Total AST: 26
+LOC: 29
+===================
+
+
+benchmark/realbugs/student1.als:
+RANK LIST:
+all n: one (((This.header).*(link))) | (n.elem) < ((n.link).elem) 21.00
+(n.elem) < ((n.link).elem) 7.30 
+lone ((n.link)) 2.05
+one ((n.elem)) 1.40
+((List.header).*(link)) = Node 1.10 
+-------------------
+analyze time(msec): 143
+# rel: 2
+# val: 2
+# Slice Out: 139
+# Total AST: 184
+LOC: 29
+===================
+
+
+benchmark/realbugs/student2_1.als:
+RANK LIST:
+all n: one (((This.header).*(link))) | (n.elem) < ((n.link).elem) 21.00
+(n.elem) < ((n.link).elem) 7.30 
+lone ((n.link)) 2.05
+one ((n.elem)) 1.40
+((List.header).*(link)) = Node 1.10 
+-------------------
+analyze time(msec): 94
+# rel: 2
+# val: 2
+# Slice Out: 118
+# Total AST: 163
+LOC: 29
+===================
+
+
+benchmark/realbugs/student2_2.als:
+RANK LIST:
+-------------------
+analyze time(msec): 65
+# rel: 0
+# val: 0
+# Slice Out: 198
+# Total AST: 198
+LOC: 29
+===================
+
+
+benchmark/realbugs/student3_1.als:
+RANK LIST:
+lone ((n.link)) 1.65
+one ((n.elem)) 1.20
+(n.elem) < (((n.link)-(This.header)).elem) 0.98 
+((List.header).*(link)) = Node 0.90 
+n in ((l.header).*(link)) 0.90 
+-------------------
+analyze time(msec): 131
+# rel: 2
+# val: 2
+# Slice Out: 137
+# Total AST: 199
+LOC: 29
+===================
+
+
+benchmark/realbugs/student3_2.als:
+RANK LIST:
+one n: one (Node) | (n.link) = (This.header) 6.00
+(n.link) = (This.header) 3.80 
+n = ((n-(This.header)).link) 3.45 
+no n: one (Node) | n = ((n-(This.header)).link) 3.00
+lone ((n.link)) 1.15
+((List.header).*(link)) = Node 0.67 
+n in ((l.header).*(link)) 0.67 
+-------------------
+analyze time(msec): 59
+# rel: 1
+# val: 1
+# Slice Out: 138
+# Total AST: 199
+LOC: 29
+===================
+
+
+benchmark/realbugs/student4.als:
+RANK LIST:
+all n: one (((This.header).*(link))) | (n.elem) < ((n.link).elem) 21.00
+(n.elem) < ((n.link).elem) 7.30 
+lone ((n.link)) 2.05
+one ((n.elem)) 1.40
+((List.header).*(link)) = Node 1.10 
+-------------------
+analyze time(msec): 103
+# rel: 2
+# val: 2
+# Slice Out: 113
+# Total AST: 158
+LOC: 29
+===================
+
+
+benchmark/realbugs/student5.als:
+RANK LIST:
+all n: one (((This.header).*(link))) | (n.elem) < ((n.link).elem) 21.00
+(n.elem) < ((n.link).elem) 7.30 
+lone ((n.link)) 2.05
+one ((n.elem)) 1.40
+((List.header).*(link)) = Node 1.10 
+-------------------
+analyze time(msec): 102
+# rel: 2
+# val: 2
+# Slice Out: 155
+# Total AST: 200
+LOC: 29
+===================
+
+
+benchmark/realbugs/student6_1.als:
+RANK LIST:
+lone ((n.link)) 1.05
+(n.elem) <= ((n.link).elem) 0.57 
+((List.header).*(link)) = Node 0.43 
+((List.header).*(link)) = Node 0.43 
+-------------------
+analyze time(msec): 134
+# rel: 1
+# val: 1
+# Slice Out: 115
+# Total AST: 159
+LOC: 29
+===================
+
+
+benchmark/realbugs/student6_2.als:
+no bug 
+
+benchmark/realbugs/student7_1.als:
+RANK LIST:
+all n: one (Node) | (n.elem) < ((n.link).elem) 21.00
+(n.elem) < ((n.link).elem) 7.23 
+((List.header).*(link)) = Node 1.38 
+#((n.elem)) = 1 1.03 
+#((n.link)) <= 1 0.93 
+-------------------
+analyze time(msec): 226
+# rel: 2
+# val: 2
+# Slice Out: 99
+# Total AST: 143
+LOC: 29
+===================
+
+
+benchmark/realbugs/student7_2.als:
+RANK LIST:
+all n: one (Node) | n in (((This.header).link).^(link)) 15.00
+n in (((This.header).link).^(link)) 6.12 
+((List.header).*(link)) = Node 0.60 
+#((n.link)) <= 1 0.52 
+-------------------
+analyze time(msec): 46
+# rel: 1
+# val: 1
+# Slice Out: 109
+# Total AST: 143
+LOC: 29
+===================
+
+
+benchmark/realbugs/student8.als:
+RANK LIST:
+(n.elem) < ((n.link).elem) 3.05 
+all n: one (Node) | (n.elem) < ((n.link).elem) 3.00
+n in ((l.header).^(link)) 2.25 
+n = (l.header) 1.80 
+lone ((n.link)) 1.45
+one ((n.elem)) 1.40
+(n = (l.header) || n in ((l.header).^(link)))
+ 0.93
+((List.header).*(link)) = Node 0.93 
+-------------------
+analyze time(msec): 112
+# rel: 2
+# val: 2
+# Slice Out: 114
+# Total AST: 178
+LOC: 29
+===================
+
+
+benchmark/realbugs/student9.als:
+RANK LIST:
+lone ((n.link)) 2.00
+some ((n.link)) 1.20
+True = result 1.00 
+(n.elem) <= ((n.link).elem) 0.87 
+n in (n.link) 0.73 
+((List.header).*(link)) = Node 0.73 
+(n.elem) = x 0.60 
+some ((n.link)) => (n.elem) <= ((n.link).elem) 0.49  => 
+some n: one (((This.header).*(link))) | (n.elem) = x => True = result 0.37  => 
+-------------------
+analyze time(msec): 119
+# rel: 1
+# val: 2
+# Slice Out: 93
+# Total AST: 168
+LOC: 29
+===================
+
+
+benchmark/realbugs/student10.als:
+RANK LIST:
+all n: one (((This.header).*(link))) | (n.elem) < ((n.link).elem) 21.00
+(n.elem) < ((n.link).elem) 7.10 
+lone ((n.link)) 1.65
+one ((n.elem)) 1.20
+((List.header).*(link)) = Node 0.97 
+((List.header).*(link)) = Node 0.97 
+-------------------
+analyze time(msec): 88
+# rel: 2
+# val: 2
+# Slice Out: 114
+# Total AST: 167
+LOC: 29
+===================
+
+
+benchmark/realbugs/student11.als:
+RANK LIST:
+all n: one (((This.header).*(link))) | (n.elem) < ((n.link).elem) 36.00
+(n.elem) < ((n.link).elem) 9.25 
+lone ((n.link)) 1.70
+one ((n.elem)) 1.30
+((List.header).*(link)) = Node 1.03 
+((List.header).*(link)) = Node 1.03 
+-------------------
+analyze time(msec): 92
+# rel: 2
+# val: 2
+# Slice Out: 136
+# Total AST: 189
+LOC: 29
+===================
+
+
+benchmark/realbugs/student12_1.als:
+RANK LIST:
+all n: one (((This.header).*(link))) | (n.elem) <= ((n.^(link)).elem) 10.00
+(n.elem) <= ((n.^(link)).elem) 4.78 
+lone ((n.link)) 1.20
+one ((n.elem)) 0.90
+((List.header).*(link)) = Node 0.60 
+-------------------
+analyze time(msec): 88
+# rel: 2
+# val: 1
+# Slice Out: 127
+# Total AST: 173
+LOC: 29
+===================
+
+
+benchmark/realbugs/student12_2.als:
+RANK LIST:
+lone ((n.link)) 2.00
+some ((n.link)) 1.20
+(lone ((n.link)) && one ((n.elem)))
+ 1.00
+one ((n.elem)) 1.00
+(n.elem) = x 0.87 
+(n.elem) <= ((n.link).elem) 0.87 
+((This.header).*(link)) = Node 0.73 
+n in (n.link) 0.73 
+((List.header).*(link)) = Node 0.73 
+some ((n.link)) => (n.elem) <= ((n.link).elem) 0.49  => 
+-------------------
+analyze time(msec): 144
+# rel: 1
+# val: 2
+# Slice Out: 89
+# Total AST: 173
+LOC: 29
+===================
+
+
+benchmark/realbugs/student13.als:
+RANK LIST:
+lone ((l.header)) 2.00
+lone ((n.link)) 1.25
+((List.header).*(link)) = Node 0.73 
+(n.link) in n 0.73 
+n in (((l.header).*(link))+(l.header)) 0.73 
+-------------------
+analyze time(msec): 73
+# rel: 2
+# val: 2
+# Slice Out: 120
+# Total AST: 186
+LOC: 29
+===================
+
+
+benchmark/realbugs/student14_1.als:
+RANK LIST:
+all n: one (((This.header).*(link))) | (n.elem) < ((n.link).elem) 21.00
+(n.elem) < ((n.link).elem) 7.30 
+lone ((n.link)) 2.05
+one ((n.elem)) 1.40
+((List.header).*(link)) = Node 1.10 
+-------------------
+analyze time(msec): 93
+# rel: 2
+# val: 2
+# Slice Out: 106
+# Total AST: 151
+LOC: 29
+===================
+
+
+benchmark/realbugs/student14_2.als:
+no bug 
+
+benchmark/realbugs/student15.als:
+RANK LIST:
+all n: one (((This.header).*(link))) | (n.elem) < ((n.link).elem) 21.00
+(n.elem) < ((n.link).elem) 7.08 
+lone ((n.link)) 1.65
+one ((n.elem)) 1.20
+n in ((l.header).*(link)) 0.97 
+((List.header).*(link)) = Node 0.97 
+-------------------
+analyze time(msec): 106
+# rel: 2
+# val: 2
+# Slice Out: 110
+# Total AST: 173
+LOC: 29
+===================
+
+
+benchmark/realbugs/student16.als:
+benchmark/realbugs/student17_1.als:
+RANK LIST:
+all n: one (((This.header).*(link))) | (n.elem) < ((n.link).elem) 21.00
+(n.elem) < ((n.link).elem) 7.10 
+lone ((n.link)) 1.65
+one ((n.elem)) 1.20
+((List.header).*(link)) = Node 0.97 
+((List.header).*(link)) = Node 0.97 
+-------------------
+analyze time(msec): 108
+# rel: 2
+# val: 2
+# Slice Out: 105
+# Total AST: 158
+LOC: 29
+===================
+
+
+benchmark/realbugs/student17_2.als:
+no bug 
+
+benchmark/realbugs/student18_1.als:
+RANK LIST:
+one ((n.link)) 3.60
+(n.elem) < ((n.link).elem) 3.28 
+all n: one (((This.header).*(link))) | (one ((n.link)) && (n.elem) < ((n.link).elem))
+ 3.00
+(one ((n.link)) && (n.elem) < ((n.link).elem))
+ 2.65
+lone ((n.link)) 1.70
+one ((n.elem)) 1.30
+((List.header).*(link)) = Node 1.03 
+-------------------
+analyze time(msec): 233
+# rel: 2
+# val: 2
+# Slice Out: 124
+# Total AST: 174
+LOC: 29
+===================
+
+
+benchmark/realbugs/student18_2.als:
+RANK LIST:
+one n: one (((This.header).*(link))) | (n.link) = n 15.00
+(n.link) = n 6.00 
+((List.header).*(link)) = Node 1.00 
+lone ((l.header)) 1.00
+lone ((n.link)) 1.00
+-------------------
+analyze time(msec): 29
+# rel: 2
+# val: 1
+# Slice Out: 128
+# Total AST: 174
+LOC: 29
+===================
+
+
+benchmark/realbugs/student19_1.als:
+RANK LIST:
+all n: one (((This.header).*(link))) | (n.elem) < ((n.link).elem) 21.00
+(n.elem) < ((n.link).elem) 7.30 
+lone ((n.link)) 2.05
+one ((n.elem)) 1.40
+((List.header).*(link)) = Node 1.10 
+-------------------
+analyze time(msec): 75
+# rel: 2
+# val: 2
+# Slice Out: 180
+# Total AST: 225
+LOC: 29
+===================
+
+
+benchmark/realbugs/student19_2.als:
+RANK LIST:
+x = n 3.00 
+lone ((n.link)) 2.55
+(n.elem) <= ((n.link).elem) 1.30 
+n in (n.^(link)) 1.10 
+((List.header).*(link)) = Node 1.00 
+-------------------
+analyze time(msec): 156
+# rel: 1
+# val: 3
+# Slice Out: 115
+# Total AST: 182
+LOC: 29
+===================
+
+
