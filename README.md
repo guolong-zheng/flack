@@ -1,4 +1,4 @@
-## Replication package for FLACK in ICSE21
+## Replication package for FLACK
 This is the replication package for FLACK: Counterexample-Guided Fault Localization for Alloy Models
 
 ### Structure of flack/
