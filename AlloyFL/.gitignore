@@ -1,0 +1,23 @@
+# Mac
+.DS_Store
+
+# Intellij
+.idea/
+*.iml
+
+# Maven
+target/
+
+# AlloyParser
+.hidden/
+experiments/*
+!experiments/models
+!experiments/realbugs
+!experiments/test-suite
+
+# Python
+*.pyc
+
+# Other
+related-work/
+papers/
