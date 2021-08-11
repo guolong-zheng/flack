@@ -27,10 +27,10 @@ This is the replication package for FLACK: Counterexample-Guided Fault Localizat
 
 # Build from source
   1. Requirement:
-	- Linux
-	- bash
-  	- Java 8
-	- Maven
+     - Linux
+     - bash
+     - Java 8
+     - Maven
   2. Build project use "mvn clean package"
   3. Generate table 3 use "java -Djava.library.path=solvers -cp ./libs/*:./target/flack-1.0-jar-with-dependencies.jar icse21"
   4. In directory flack/, run FLACK on one model use "java -Djava.library.path=solvers -cp ./libs/*:./target/flack-1.0-jar-with-dependencies.jar loc -f /path/to/model -m #/of/instances"
