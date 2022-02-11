@@ -41,3 +41,6 @@ We also include a distribution in our package, to run AlloyFL on the benchmark:
   1. Go to flack/AlloyFL/
   2. Build AlloyFL use "mvn clean package"
   3. Run AlloyFL on all models use "java -Djava.library.path=sat-solvers -cp lib/*:target/aparser-1.0.jar alloyfl.hybrid.HybridAverageFaultLocator", the total runtime for AlloyFL takes about 80 minutes
+
+# Developer
+Guolong Zheng, Simon Gutierrez Brida, German Regis
